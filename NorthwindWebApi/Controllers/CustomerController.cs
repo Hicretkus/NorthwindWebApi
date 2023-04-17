@@ -20,7 +20,7 @@ namespace Northwind.Api.Controllers
             _customerRepository = customerRepository;
 		}
 
-        [HttpGet]
+        [HttpGet("GetCustomer")]
         public async Task<IActionResult> GetAll()
         {
             var data = await _customerRepository.GetAllAsync();
@@ -38,7 +38,7 @@ namespace Northwind.Api.Controllers
 			
            
         }
-        [HttpPost]
+        [HttpPost("PostCustomer")]
         public async Task<IActionResult> Add(Customer customer)
         {
             var data = await _customerRepository.AddAsync(customer);
@@ -46,14 +46,14 @@ namespace Northwind.Api.Controllers
 			return Ok(customerData);
 
 		}
-        [HttpDelete]
+        [HttpDelete("DeleteCustomer")]
         public async Task<IActionResult> Delete(int id)
         {
             var data = await _customerRepository.DeleteAsync(id);
 			var customerData = _mapper.Map<List<CustomerDto>>(data);
 			return Ok(customerData);
 		}
-        [HttpPut]
+        [HttpPut("PutCustomer")]
         public async Task<IActionResult> Update(Customer customer)
         {
             var data = await _customerRepository.UpdateAsync(customer);
