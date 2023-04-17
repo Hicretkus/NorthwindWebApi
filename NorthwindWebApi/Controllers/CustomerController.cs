@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Northwind.Application.Repository;
 using Northwind.Domain.Entities;
 using System.Net;
 
@@ -9,48 +11,44 @@ namespace Northwind.Api.Controllers
 	[ApiController]
 	public class CustomerController : ControllerBase
 	{
-		//// GET: api/Customer
-		//public HttpResponseMessage Get()
-		//{
-		//	var customers = _customerService.Get();
-		//	if (customers != null)
-		//		return Request.CreateResponse(HttpStatusCode.OK, customers);
-		//	else return Request.CreateErrorResponse(HttpStatusCode.NotFound
-		//							, "No customers found");
-		//}
+		private readonly IMapper _mapper;
+		private readonly ICustomerRepository _customerRepository;
+		public CustomerController(IMapper mapper,ICustomerRepository customerRepository)
+		{
+			_mapper = mapper;
+            _customerRepository = customerRepository;
+		}
 
-		//// GET: api/Customer/5
-		//public HttpResponseMessage Get(string id)
-		//{
-		//	var customer = _customerService.Get(id);
-		//	if (customer != null)
-		//		return Request.CreateResponse(HttpStatusCode.OK, customer);
-		//	else return Request.CreateErrorResponse(HttpStatusCode.NotFound
-		//							, "Customer with Id " + id + " does not exist");
-		//}
-
-		//// POST: api/Customer
-		//public HttpResponseMessage Post([FromBody] Customer customer)
-		//{
-		//	_customerService.Add(customer);
-
-		//	var message = Request.CreateResponse(HttpStatusCode.Created);
-		//	message.Headers.Location = new Uri(Request.RequestUri + customer.CustomerID);
-		//	return message;
-		//}
-
-		//// PUT: api/Customer/5
-		//public HttpResponseMessage Put([FromBody] Customer customer)
-		//{
-		//	_customerService.Update(customer);
-		//	return Request.CreateResponse(HttpStatusCode.OK, string.Empty);
-		//}
-
-		//// DELETE: api/Customer/5
-		//public HttpResponseMessage Delete(string id)
-		//{
-		//	_customerService.Delete(id);
-		//	return Request.CreateResponse(HttpStatusCode.OK, string.Empty);
-		//}
-	}
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var data = await _customerRepository.GetAllAsync();
+            return Ok(data);
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var data = await _customerRepository.GetByIdAsync(id);
+            if (data == null) return Ok();
+            return Ok(data);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Add(Customer customer)
+        {
+            var data = await _customerRepository.AddAsync(customer);
+            return Ok(data);
+        }
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var data = await _customerRepository.DeleteAsync(id);
+            return Ok(data);
+        }
+        [HttpPut]
+        public async Task<IActionResult> Update(Customer customer)
+        {
+            var data = await _customerRepository.UpdateAsync(customer);
+            return Ok(data);
+        }
+    }
 }

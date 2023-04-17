@@ -16,5 +16,6 @@ namespace Northwind.Domain.Entities
 		public int UnitsOnOrder { get; set; }
 		public int ReorderLevel { get; set; }
 		public bool Discontinued { get; set; }
-	}
+        public DateTime AddedOn { get; set; }
+    }
 }
