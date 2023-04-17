@@ -23,6 +23,7 @@ namespace Northwind.Api.Controllers
         public async Task<IActionResult> GetAll()
         {
             var data = await _customerRepository.GetAllAsync();
+
             return Ok(data);
         }
         [HttpGet("{id}")]

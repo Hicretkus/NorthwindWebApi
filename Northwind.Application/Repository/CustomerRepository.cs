@@ -25,7 +25,6 @@ namespace Northwind.Application.Repository
         public Task<int> DeleteAsync(int id)
         {
             var sql = "DELETE FROM Customers WHERE CustomerID = @id";
-
             return;
         }
 
