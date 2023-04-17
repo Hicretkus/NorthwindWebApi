@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Northwind.Application.Dtos;
 using Northwind.Application.Repository;
 using Northwind.Domain.Entities;
 using System.Net;
@@ -23,34 +24,41 @@ namespace Northwind.Api.Controllers
         public async Task<IActionResult> GetAll()
         {
             var data = await _customerRepository.GetAllAsync();
-
-            return Ok(data);
+			var customerData = _mapper.Map<List<CustomerDto>>(data);
+			return Ok(customerData);
+			
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var data = await _customerRepository.GetByIdAsync(id);
-            if (data == null) return Ok();
-            return Ok(data);
+			var customerData = _mapper.Map<List<CustomerDto>>(data);
+			if (customerData == null) return Ok();
+			return Ok(customerData);
+			
+           
         }
         [HttpPost]
         public async Task<IActionResult> Add(Customer customer)
         {
             var data = await _customerRepository.AddAsync(customer);
-            return Ok(data);
+			var customerData = _mapper.Map<List<CustomerDto>>(data);
+			return Ok(customerData);
 
-        }
+		}
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
             var data = await _customerRepository.DeleteAsync(id);
-            return Ok(data);
-        }
+			var customerData = _mapper.Map<List<CustomerDto>>(data);
+			return Ok(customerData);
+		}
         [HttpPut]
         public async Task<IActionResult> Update(Customer customer)
         {
             var data = await _customerRepository.UpdateAsync(customer);
-            return Ok(data);
-        }
+			var customerData = _mapper.Map<List<CustomerDto>>(data);
+			return Ok(customerData);
+		}
     }
 }
