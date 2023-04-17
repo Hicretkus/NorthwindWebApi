@@ -37,6 +37,7 @@ namespace Northwind.Api.Controllers
         {
             var data = await _customerRepository.AddAsync(customer);
             return Ok(data);
+
         }
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
