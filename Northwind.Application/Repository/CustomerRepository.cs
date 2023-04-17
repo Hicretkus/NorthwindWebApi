@@ -19,31 +19,31 @@ namespace Northwind.Application.Repository
         {
             var sql = "Insert into Customers(CustomerName,ContactName,ContactTitle) VALUES (@CustomerName,@ContactName,@ContactTitle)";
 
-            return
+            return;
         }
 
         public Task<int> DeleteAsync(int id)
         {
             var sql = "DELETE FROM Customers WHERE CustomerID = @id";
-            return
+            return;
         }
 
         public Task<IReadOnlyList<Customer>> GetAllAsync()
         {
             var sql = "SELECT * FROM Customers";
-            return
+            return;
         }
 
         public Task<Customer> GetByIdAsync(int id)
         {
             var sql = "SELECT * FROM Customers WHERE CustomerID = @id";
-            return
+            return;
         }
 
         public Task<int> UpdateAsync(Customer entity)
         {
             var sql = "UPDATE Customers SET CustomerName = @CustomerName, ContactName = @ContactName, ContactTitle = @ContactTitle  WHERE CustomerID = @id";
-            return
+            return;
         }
     }
 }
