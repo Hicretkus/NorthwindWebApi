@@ -8,7 +8,7 @@ namespace Northwind.Application.Dtos
 {
 	public class EmployeeDto
 	{
-		public int EmployeeID { get; set; }
+		public int Id { get; set; }
 		public string LastName { get; set; }
 		public string FirstName { get; set; }
 		public string Title { get; set; }
@@ -26,6 +26,4 @@ namespace Northwind.Application.Dtos
 		public string Notes { get; set; }
 		public string PhotoPath { get; set; }
 	}
-
-
 }

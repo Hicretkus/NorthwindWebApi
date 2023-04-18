@@ -3,19 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Api", "NorthwindWebApi\Northwind.Api.csproj", "{89F1C43C-6839-48BC-9E37-381671A0565D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Api", "NorthwindWebApi\Northwind.Api.csproj", "{89F1C43C-6839-48BC-9E37-381671A0565D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{64805C67-7C99-4D1F-9D91-9BF8489DB162}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Northwind", "Northwind", "{1BC021E0-3704-4B27-AC7E-F1F4ECFD2C05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Domain", "Northwind.Domain\Northwind.Domain.csproj", "{4333CCF5-290C-407D-A0B5-77799E3BAEAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Domain", "Northwind.Domain\Northwind.Domain.csproj", "{4333CCF5-290C-407D-A0B5-77799E3BAEAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Application", "Northwind.Application\Northwind.Application.csproj", "{DF2214B7-0286-4802-98A3-505EA4F13FD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Application", "Northwind.Application\Northwind.Application.csproj", "{DF2214B7-0286-4802-98A3-505EA4F13FD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Infrastructure", "Northwind.Infrastructure\Northwind.Infrastructure.csproj", "{932B002C-1960-4FB2-ACEF-20B22D4074D9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.WorkerService", "Northwind.WorkerService\Northwind.WorkerService.csproj", "{F2FDA151-8A1B-4A9F-9FF8-9B8150644A59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Infrastructure", "Northwind.Infrastructure\Northwind.Infrastructure.csproj", "{932B002C-1960-4FB2-ACEF-20B22D4074D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +37,6 @@ Global
 		{932B002C-1960-4FB2-ACEF-20B22D4074D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{932B002C-1960-4FB2-ACEF-20B22D4074D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{932B002C-1960-4FB2-ACEF-20B22D4074D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F2FDA151-8A1B-4A9F-9FF8-9B8150644A59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F2FDA151-8A1B-4A9F-9FF8-9B8150644A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F2FDA151-8A1B-4A9F-9FF8-9B8150644A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F2FDA151-8A1B-4A9F-9FF8-9B8150644A59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,7 +47,6 @@ Global
 		{4333CCF5-290C-407D-A0B5-77799E3BAEAD} = {1BC021E0-3704-4B27-AC7E-F1F4ECFD2C05}
 		{DF2214B7-0286-4802-98A3-505EA4F13FD2} = {1BC021E0-3704-4B27-AC7E-F1F4ECFD2C05}
 		{932B002C-1960-4FB2-ACEF-20B22D4074D9} = {1BC021E0-3704-4B27-AC7E-F1F4ECFD2C05}
-		{F2FDA151-8A1B-4A9F-9FF8-9B8150644A59} = {1BC021E0-3704-4B27-AC7E-F1F4ECFD2C05}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E874185A-7E40-4F72-A324-903F263C1F9E}

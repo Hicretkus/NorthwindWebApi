@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Application.Dtos;
 using Northwind.Application.Repository;
@@ -12,8 +11,8 @@ namespace Northwind.Api.Controllers
 	public class ProductController : ControllerBase
 	{
 		private readonly IMapper _mapper;
-		private readonly IProductRepository _productRepository;
-		public ProductController(IMapper mapper, IProductRepository productRepository)
+		private readonly ProductRepository _productRepository;
+		public ProductController(IMapper mapper, ProductRepository productRepository)
 		{
 			_mapper = mapper;
 			_productRepository = productRepository;
@@ -24,15 +23,16 @@ namespace Northwind.Api.Controllers
 		{
 			var data = await _productRepository.GetAllAsync();
 			var productData = _mapper.Map<List<ProductDto>>(data);
+
 			return Ok(productData);
 		}
 		[HttpGet("{id}")]
 		public async Task<IActionResult> GetById(int id)
 		{
 			var data = await _productRepository.GetByIdAsync(id);
-			var productData = _mapper.Map<List<ProductDto>>(data);
-			
+			var productData = _mapper.Map<List<ProductDto>>(data);			
 			if (productData == null) return Ok();
+
 			return Ok(productData);
 		}
 		[HttpPost]
@@ -40,6 +40,7 @@ namespace Northwind.Api.Controllers
 		{
 			var data = await _productRepository.AddAsync(product);
 			var productData = _mapper.Map<List<ProductDto>>(data);
+
 			return Ok(productData);
 		}
 		[HttpDelete]
@@ -47,6 +48,7 @@ namespace Northwind.Api.Controllers
 		{
 			var data = await _productRepository.DeleteAsync(id);
 			var productData = _mapper.Map<List<ProductDto>>(data);
+
 			return Ok(productData);
 		}
 		[HttpPut]
@@ -54,6 +56,7 @@ namespace Northwind.Api.Controllers
 		{
 			var data = await _productRepository.UpdateAsync(product);
 			var productData = _mapper.Map<List<ProductDto>>(data);
+
 			return Ok(productData);
 		}
 	}
