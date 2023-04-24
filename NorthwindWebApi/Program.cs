@@ -1,5 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 using Northwind.Api.Helpers;
 using Northwind.Infrastructure.Persistence;
+using System;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<ConnectionHelper>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddDbContext<NorthwindDbContext>(x =>
+{
+	x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>
+	{
+		option.MigrationsAssembly(Assembly.GetAssembly(typeof(NorthwindDbContext)).GetName().Name);
+	});
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
