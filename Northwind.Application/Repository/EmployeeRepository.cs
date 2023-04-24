@@ -12,39 +12,64 @@ namespace Northwind.Application.Repository
             _configuration = configuration;
         }
 
-        public Task<int> AddAsync(Employee entity)
-        {
-            var sql = "Insert into Employees(LastName,FirstName,Title) VALUES (@LastName,@FirstName,@Title)";
+		public Task<int> AddAsync(Employee entity)
+		{
+			throw new NotImplementedException();
+		}
 
-            return;
-        }
+		public Task<int> DeleteAsync(int id)
+		{
+			throw new NotImplementedException();
+		}
 
-        public Task<int> DeleteAsync(int id)
-        {
-            var sql = "DELETE FROM Employees WHERE EmployeeID = @id";
+		public Task<IReadOnlyList<Employee>> GetAllAsync()
+		{
+			throw new NotImplementedException();
+		}
 
-            return;
-        }
+		public Task<Employee> GetByIdAsync(int id)
+		{
+			throw new NotImplementedException();
+		}
 
-        public Task<IReadOnlyList<Employee>> GetAllAsync()
-        {
-            var sql = "SELECT * FROM Employees";
+		public Task<int> UpdateAsync(Employee entity)
+		{
+			throw new NotImplementedException();
+		}
 
-            return;
-        }
+		//public Task<int> AddAsync(Employee entity)
+		//{
+		//    var sql = "Insert into Employees(LastName,FirstName,Title) VALUES (@LastName,@FirstName,@Title)";
 
-        public Task<Employee> GetByIdAsync(int id)
-        {
-            var sql = "SELECT * FROM Employees WHERE EmployeeID = @id";
+		//    return;
+		//}
 
-            return;
-        }
+		//public Task<int> DeleteAsync(int id)
+		//{
+		//    var sql = "DELETE FROM Employees WHERE EmployeeID = @id";
 
-        public Task<int> UpdateAsync(Employee entity)
-        {
-            var sql = "UPDATE Employees SET LastName = @LastName, FirstName = @FirstName, Title = @Title  WHERE EmployeeID = @id";
+		//    return;
+		//}
 
-            return;
-        }
-    }
+		//public Task<IReadOnlyList<Employee>> GetAllAsync()
+		//{
+		//    var sql = "SELECT * FROM Employees";
+
+		//    return;
+		//}
+
+		//public Task<Employee> GetByIdAsync(int id)
+		//{
+		//    var sql = "SELECT * FROM Employees WHERE EmployeeID = @id";
+
+		//    return;
+		//}
+
+		//public Task<int> UpdateAsync(Employee entity)
+		//{
+		//    var sql = "UPDATE Employees SET LastName = @LastName, FirstName = @FirstName, Title = @Title  WHERE EmployeeID = @id";
+
+		//    return;
+		//}
+	}
 }

@@ -4,37 +4,25 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.Options;
 using Northwind.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace Northwind.Infrastructure.Persistence
 {
 	public class NorthwindDbContext : DbContext
 	{
-
 		public NorthwindDbContext(DbContextOptions<NorthwindDbContext> options) : base(options)
+
 		{
-
 			//options.UseSqlServer("data source=.;initial catalog=NorthwindDb;integrated security=true");
-
 		}
+
 		public DbSet<Customer> Customers { get; set; }
 		public DbSet<Employee> Employees { get; set; }
 		public DbSet<Product> Products { get; set; }
 
-		//protected override void OnModelCreating(ModelBuilder modelBuilder)
-		//{
-		//	modelBuilder.Entity<Customer>().HasKey(x => x.CustomerID);
-		//	modelBuilder.Entity<Employee>().HasKey(x => x.EmployeeID);
-		//	modelBuilder.Entity<Product>().HasKey(x => x.ProductID);
-		//}
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-
 
 			modelBuilder.ApplyConfiguration(new CustomerMapping());
 			modelBuilder.ApplyConfiguration(new EmployeeMapping());
@@ -59,7 +47,6 @@ namespace Northwind.Infrastructure.Persistence
 				builder.Property(x => x.Fax).HasMaxLength(24);
 			}
 		}
-
 		public class EmployeeMapping : IEntityTypeConfiguration<Employee>
 		{
 			public void Configure(EntityTypeBuilder<Employee> builder)
@@ -81,7 +68,6 @@ namespace Northwind.Infrastructure.Persistence
 				builder.Property(x => x.PhotoPath).HasMaxLength(255);
 			}
 		}
-
 		public class ProductMapping : IEntityTypeConfiguration<Product>
 		{
 			public void Configure(EntityTypeBuilder<Product> builder)
