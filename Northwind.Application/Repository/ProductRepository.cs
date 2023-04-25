@@ -19,7 +19,8 @@ namespace Northwind.Application.Repository
 		public async Task<int> AddAsync(Product entity)
 		{
 
-		var sql = "INSERT INTO Products (Name,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued,AddedOn) VALUES (@Name,@QuantityPerUnit,@UnitPrice,@UnitsInStock,@UnitsOnOrder,@ReorderLevel,@Discontinued,@AddedOn)";
+		var sql = "INSERT INTO Products (Name,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued,AddedOn)" +
+				" VALUES (@Name,@QuantityPerUnit,@UnitPrice,@UnitsInStock,@UnitsOnOrder,@ReorderLevel,@Discontinued,@AddedOn)";
 			using (var connection = new SqlConnection(_connectionString))
 			{				
 				var result = await connection.ExecuteAsync(sql, entity);

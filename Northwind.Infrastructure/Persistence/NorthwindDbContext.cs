@@ -33,7 +33,7 @@ namespace Northwind.Infrastructure.Persistence
 			public void Configure(EntityTypeBuilder<Customer> builder)
 			{
 				builder.HasKey(x => x.Id);
-				builder.Property(x => x.Id).HasMaxLength(5).IsRequired();
+				builder.Property(x => x.Id).IsRequired();
 				builder.Property(x => x.Name).HasMaxLength(40).IsRequired();
 				builder.Property(x => x.ContactTitle).HasMaxLength(30);
 				builder.Property(x => x.Address).HasMaxLength(60);
@@ -50,6 +50,7 @@ namespace Northwind.Infrastructure.Persistence
 			public void Configure(EntityTypeBuilder<Employee> builder)
 			{
 				builder.HasKey(x => x.Id);
+				builder.Property(x => x.Id).IsRequired();
 				builder.Property(x => x.LastName).HasMaxLength(20).IsRequired();
 				builder.Property(x => x.FirstName).HasMaxLength(10).IsRequired();
 				builder.Property(x => x.Title).HasMaxLength(30);

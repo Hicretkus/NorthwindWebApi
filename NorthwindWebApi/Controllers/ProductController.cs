@@ -32,7 +32,7 @@ namespace Northwind.Api.Controllers
 		{
 			var data = await _productRepository.GetByIdAsync(id);
 			var productData = _mapper.Map<List<ProductDto>>(data);
-            if (productData == null) return Ok();
+          //  if (productData == null) return Ok();
 
 			return Ok(productData);
 		}

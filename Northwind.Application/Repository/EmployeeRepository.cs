@@ -17,7 +17,8 @@ namespace Northwind.Application.Repository
 
 		public async Task<int> AddAsync(Employee entity)
 		{
-			var sql = "INSERT INTO Employees (LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,Photo,Notes,PhotoPath) VALUES (@LastName,@FirstName,@Title,@TitleOfCourtesy,@BirthDate,@HireDate,@Address,@City,@Region,@PostalCode,@Country,@HomePhone,@Extension,@Photo,@Notes,@PhotoPath)";
+			var sql = "INSERT INTO Employees (LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,Photo,Notes,PhotoPath)" +
+				" VALUES (@LastName,@FirstName,@Title,@TitleOfCourtesy,@BirthDate,@HireDate,@Address,@City,@Region,@PostalCode,@Country,@HomePhone,@Extension,@Photo,@Notes,@PhotoPath)";
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
@@ -27,13 +28,13 @@ namespace Northwind.Application.Repository
 			}
 		}
 
-		public Task<int> DeleteAsync(int id)
+		public async Task<int> DeleteAsync(int id)
 		{
 			var sql = "DELETE FROM Employees WHERE Id = @id";
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				var result = connection.ExecuteAsync(sql, new { Id = id });
+				var result = await connection.ExecuteAsync(sql, new { Id = id });
 
 				return result;
 			}
@@ -51,26 +52,26 @@ namespace Northwind.Application.Repository
 			}
 		}
 
-		public Task<Employee> GetByIdAsync(int id)
+		public async Task<Employee> GetByIdAsync(int id)
 		{
 			var sql = "SELECT * FROM Employees WHERE Id = @id";
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				var result = connection.QuerySingleOrDefaultAsync<Employee>(sql, new { Id = id });
+				var result = await connection.QuerySingleOrDefaultAsync<Employee>(sql, new { Id = id });
 
 				return result;
 			}
 		}
 
-		public Task<int> UpdateAsync(Employee entity)
+		public async Task<int> UpdateAsync(Employee entity)
 		{
 			var sql = "UPDATE Employees SET LastName = @LastName, FirstName = @FirstName, Title = @Title,TitleOfCourtesy=@TitleOfCourtesy,BirthDate=@BirthDate,HireDate=@HireDate," +
-				"Address=@Address,City=@City,Region=@Region,PostalCode=@PostalCode,Country=@Country,HomePhone@HomePhone,Extension=@Extension,Photo=@Photo,Notes=@Notes,PhotoPath=@PhotoPath  WHERE Id = @id";
+				"Address=@Address,City=@City,Region=@Region,PostalCode=@PostalCode,Country=@Country,HomePhone=@HomePhone,Extension=@Extension,Photo=@Photo,Notes=@Notes,PhotoPath=@PhotoPath  WHERE Id = @id";
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				var result = connection.ExecuteAsync(sql, entity);
+				var result = await connection.ExecuteAsync(sql, entity);
 
 				return result;
 			}

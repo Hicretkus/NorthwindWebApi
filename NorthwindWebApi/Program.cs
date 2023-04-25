@@ -1,8 +1,12 @@
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Northwind.Api.Controllers;
 using Northwind.Api.Helpers;
+using Northwind.Application.Dtos;
 using Northwind.Application.Repository;
+using Northwind.Domain.Entities;
 using Northwind.Infrastructure.Persistence;
 using System;
 using System.Reflection;

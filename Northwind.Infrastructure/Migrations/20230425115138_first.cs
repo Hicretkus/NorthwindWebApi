@@ -15,7 +15,8 @@ namespace Northwind.Infrastructure.Migrations
                 name: "Customers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     Contact = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ContactTitle = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
