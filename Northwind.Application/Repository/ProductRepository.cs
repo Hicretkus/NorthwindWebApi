@@ -15,13 +15,13 @@ namespace Northwind.Application.Repository
 			_configuration = configuration;
 			_connectionString = _configuration.GetConnectionString("SqlConnection");
 		}
+
 		public async Task<int> AddAsync(Product entity)
 		{
 
-		var sql = "Insert into Products (Name,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued,AddedOn) VALUES (@Name,@QuantityPerUnit,@UnitPrice,@UnitsInStock,@UnitsOnOrder,@ReorderLevel,@Discontinued,@AddedOn)";
+		var sql = "INSERT INTO Products (Name,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued,AddedOn) VALUES (@Name,@QuantityPerUnit,@UnitPrice,@UnitsInStock,@UnitsOnOrder,@ReorderLevel,@Discontinued,@AddedOn)";
 			using (var connection = new SqlConnection(_connectionString))
-			{
-				
+			{				
 				var result = await connection.ExecuteAsync(sql, entity);
 
 				return result;
@@ -33,8 +33,7 @@ namespace Northwind.Application.Repository
 		    var sql = "DELETE FROM Products WHERE Id = @id";
 
 			using (var connection = new SqlConnection(_connectionString))
-			{
-				
+			{				
 				var result =  await connection.ExecuteAsync(sql, new { Id = id });
 
 				return result;
@@ -47,8 +46,7 @@ namespace Northwind.Application.Repository
 		    var sql = "SELECT * FROM Products";
 
 			using (var connection = new SqlConnection(_connectionString))
-			{
-				
+			{				
 				var result =  await connection.QueryAsync<Product>(sql);
 
 				return result.ToList();
@@ -60,8 +58,7 @@ namespace Northwind.Application.Repository
 		    var sql = "SELECT * FROM Products WHERE Id = @id";
 
 			using (var connection = new SqlConnection(_connectionString))
-			{
-				
+			{				
 				var result = await  connection.QuerySingleOrDefaultAsync<Product>(sql, new { Id = id });
 
 				return result;
@@ -73,8 +70,7 @@ namespace Northwind.Application.Repository
 		    var sql = "UPDATE Products SET Name = @Name, QuantityPerUnit = @QuantityPerUnit, UnitPrice = @UnitPrice, UnitsInStock = @UnitsInStock, UnitsOnOrder = @UnitsOnOrder, ReorderLevel=@ReorderLevel, Discontinued=@Discontinued ,AddedOn=@AddedOn WHERE Id = @id";
 
 			using (var connection = new SqlConnection(_connectionString))
-			{
-				
+			{				
 				var result =  await connection.ExecuteAsync(sql, entity);
 
 				return result;

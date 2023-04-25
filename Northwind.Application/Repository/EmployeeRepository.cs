@@ -5,25 +5,23 @@ using Microsoft.Extensions.Configuration;
 
 namespace Northwind.Application.Repository
 {
-    public class EmployeeRepository : IGenericRepository<Employee>
-    {
+	public class EmployeeRepository : IGenericRepository<Employee>
+	{
 		private readonly IConfiguration _configuration;
 		private readonly string _connectionString;
 		public EmployeeRepository(IConfiguration configuration)
-		 {
+		{
 			_configuration = configuration;
 			_connectionString = _configuration.GetConnectionString("SqlConnection");
 		}
 
-
 		public async Task<int> AddAsync(Employee entity)
 		{
-			var sql = "Insert into Employees (LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,Photo,Notes,PhotoPath) VALUES (@LastName,@FirstName,@Title,@TitleOfCourtesy,@BirthDate,@HireDate,@Address,@City,@Region,@PostalCode,@Country,@HomePhone,@Extension,@Photo,@Notes,@PhotoPath)";
+			var sql = "INSERT INTO Employees (LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,Photo,Notes,PhotoPath) VALUES (@LastName,@FirstName,@Title,@TitleOfCourtesy,@BirthDate,@HireDate,@Address,@City,@Region,@PostalCode,@Country,@HomePhone,@Extension,@Photo,@Notes,@PhotoPath)";
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				
-				var result =  await connection.ExecuteAsync(sql, entity);
+				var result = await connection.ExecuteAsync(sql, entity);
 
 				return result;
 			}
@@ -35,7 +33,6 @@ namespace Northwind.Application.Repository
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				
 				var result = connection.ExecuteAsync(sql, new { Id = id });
 
 				return result;
@@ -48,7 +45,6 @@ namespace Northwind.Application.Repository
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				
 				var result = await connection.QueryAsync<Employee>(sql);
 
 				return result.ToList();
@@ -61,7 +57,6 @@ namespace Northwind.Application.Repository
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				
 				var result = connection.QuerySingleOrDefaultAsync<Employee>(sql, new { Id = id });
 
 				return result;
@@ -75,7 +70,6 @@ namespace Northwind.Application.Repository
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				
 				var result = connection.ExecuteAsync(sql, entity);
 
 				return result;

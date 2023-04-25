@@ -5,24 +5,25 @@ using Microsoft.Extensions.Configuration;
 
 namespace Northwind.Application.Repository
 {
-    public class CustomerRepository : IGenericRepository<Customer>
-    {
+	public class CustomerRepository : IGenericRepository<Customer>
+	{
 		private readonly IConfiguration _configuration;
 		private readonly string _connectionString;
 		public CustomerRepository(IConfiguration configuration)
 		{
 			_configuration = configuration;
-			_connectionString= _configuration.GetConnectionString("SqlConnection");
+			_connectionString = _configuration.GetConnectionString("SqlConnection");
 		}
 		public async Task<int> AddAsync(Customer entity)
 		{
-			var sql = "Insert into Customers (Id,Name,Contact,ContactTitle,Address,City,Region,PostalCode,Country,Phone,Fax) VALUES (@Id,@Name,@Contact,@ContactTitle,@Address,@City,@Region,@PostalCode,@Country,@Phone,@Fax)";
+			var sql = "INSERT INTO Customers (Id,Name,Contact,ContactTitle,Address,City,Region,PostalCode,Country,Phone,Fax) VALUES (@Id,@Name,@Contact,@ContactTitle,@Address,@City,@Region,@PostalCode,@Country,@Phone,@Fax)";
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				//connection.Open();
 				var result = await connection.ExecuteAsync(sql, entity);
+
 				return result;
+
 			}
 		}
 
@@ -32,8 +33,8 @@ namespace Northwind.Application.Repository
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				//connection.Open();
 				var result = connection.ExecuteAsync(sql, new { Id = id });
+
 				return result;
 			}
 		}
@@ -44,8 +45,8 @@ namespace Northwind.Application.Repository
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				//connection.Open();
 				var result = await connection.QueryAsync<Customer>(sql);
+
 				return result.ToList();
 			}
 		}
@@ -56,8 +57,8 @@ namespace Northwind.Application.Repository
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				//connection.Open();
 				var result = connection.QuerySingleOrDefaultAsync<Customer>(sql, new { Id = id });
+
 				return result;
 			}
 		}
@@ -68,8 +69,8 @@ namespace Northwind.Application.Repository
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				//connection.Open();
 				var result = connection.ExecuteAsync(sql, entity);
+
 				return result;
 			}
 		}
