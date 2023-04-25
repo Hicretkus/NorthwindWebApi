@@ -1,77 +1,84 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using Northwind.Domain.Entities;
+
 
 namespace Northwind.Application.Repository
 {
     public class ProductRepository : IGenericRepository<Product>
-    {
-        private readonly IConfiguration _configuration;
-        
-        public ProductRepository(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
-		public Task<int> AddAsync(Product entity)
+    {	
+		private readonly IConfiguration _configuration;
+		private readonly string _connectionString;
+		public ProductRepository(IConfiguration configuration)
 		{
-			throw new NotImplementedException();
+			_configuration = configuration;
+			_connectionString = _configuration.GetConnectionString("SqlConnection");
+		}
+		public async Task<int> AddAsync(Product entity)
+		{
+
+		var sql = "Insert into Products (Name,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued,AddedOn) VALUES (@Name,@QuantityPerUnit,@UnitPrice,@UnitsInStock,@UnitsOnOrder,@ReorderLevel,@Discontinued,@AddedOn)";
+			using (var connection = new SqlConnection(_connectionString))
+			{
+				
+				var result = await connection.ExecuteAsync(sql, entity);
+
+				return result;
+			}
 		}
 
-		public Task<int> DeleteAsync(int id)
+		public async Task<int> DeleteAsync(int id)
 		{
-			throw new NotImplementedException();
+		    var sql = "DELETE FROM Products WHERE Id = @id";
+
+			using (var connection = new SqlConnection(_connectionString))
+			{
+				
+				var result =  await connection.ExecuteAsync(sql, new { Id = id });
+
+				return result;
+			}
+
 		}
 
-		public Task<IReadOnlyList<Product>> GetAllAsync()
+		public async Task<IReadOnlyList<Product>> GetAllAsync()
 		{
-			throw new NotImplementedException();
+		    var sql = "SELECT * FROM Products";
+
+			using (var connection = new SqlConnection(_connectionString))
+			{
+				
+				var result =  await connection.QueryAsync<Product>(sql);
+
+				return result.ToList();
+			}
 		}
 
-		public Task<Product> GetByIdAsync(int id)
+		public async Task<Product> GetByIdAsync(int id)
 		{
-			throw new NotImplementedException();
+		    var sql = "SELECT * FROM Products WHERE Id = @id";
+
+			using (var connection = new SqlConnection(_connectionString))
+			{
+				
+				var result = await  connection.QuerySingleOrDefaultAsync<Product>(sql, new { Id = id });
+
+				return result;
+			}
 		}
 
-		public Task<int> UpdateAsync(Product entity)
+		public async Task<int> UpdateAsync(Product entity)
 		{
-			throw new NotImplementedException();
+		    var sql = "UPDATE Products SET Name = @Name, QuantityPerUnit = @QuantityPerUnit, UnitPrice = @UnitPrice, UnitsInStock = @UnitsInStock, UnitsOnOrder = @UnitsOnOrder, ReorderLevel=@ReorderLevel, Discontinued=@Discontinued ,AddedOn=@AddedOn WHERE Id = @id";
+
+			using (var connection = new SqlConnection(_connectionString))
+			{
+				
+				var result =  await connection.ExecuteAsync(sql, entity);
+
+				return result;
+			}
 		}
-
-		//public async Task<int> AddAsync(Product entity)
-		//{
-
-		//var sql = "Insert into Products (ProductName,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued) VALUES (@ProductName,@QuantityPerUnit,@UnitPrice,@UnitsInStock,@UnitsOnOrder,@ReorderLevel,@Discontinued)";
-
-		//    return;
-		//}
-
-		//public Task<int> DeleteAsync(int id)
-		//{
-		//    var sql = "DELETE FROM Products WHERE ProductID = @id";
-
-		//    return;
-
-		//}
-
-		//public Task<IReadOnlyList<Product>> GetAllAsync()
-		//{
-		//    var sql = "SELECT * FROM Products";
-
-		//    return;
-		//}
-
-		//public Task<Product> GetByIdAsync(int id)
-		//{
-		//    var sql = "SELECT * FROM Products WHERE ProductID = @id";
-
-		//    return;
-		//}
-
-		//public Task<int> UpdateAsync(Product entity)
-		//{
-		//    var sql = "UPDATE Products SET ProductName = @ProductName, QuantityPerUnit = @QuantityPerUnit, UnitPrice = @UnitPrice, UnitsInStock = @UnitsInStock, UnitsOnOrder = @UnitsOnOrder, ReorderLevel=@ReorderLevel, Discontinued=@Discontinued  WHERE ProductID = @id";
-
-		//    return;
-		//}
 	}
 }
