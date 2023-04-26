@@ -18,7 +18,6 @@ namespace Northwind.Api.Controllers
 			_productRepository = productRepository;
 
 		}
-
 		[HttpGet("GetProduct")]
 		public async Task<IActionResult> GetAll()
 		{

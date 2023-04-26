@@ -6,10 +6,10 @@ using Northwind.Domain.Entities;
 
 namespace Northwind.Api.Controllers
 {
-	    [Route("api/[controller]")]
-	    [ApiController]
-	    public class EmployeeController : ControllerBase
-	    {
+	[Route("api/[controller]")]
+	[ApiController]
+	public class EmployeeController : ControllerBase
+	{
 		private readonly IMapper _mapper;
 		private readonly EmployeeRepository _employeeRepository;
 		public EmployeeController(IMapper mapper, EmployeeRepository employeeRepository)
@@ -27,7 +27,6 @@ namespace Northwind.Api.Controllers
 			return Ok(employeeData);
 
 		}
-
 		[HttpGet("{id}")]
 		public async Task<IActionResult> GetById(int id)
 		{
@@ -36,8 +35,9 @@ namespace Northwind.Api.Controllers
 			if (employeeData == null) return Ok();
 
 			return Ok(employeeData);
-		}
 
+
+		}
 		[HttpPost("PostEmployee")]
 		public async Task<IActionResult> Add(Employee employee)
 		{
@@ -46,7 +46,6 @@ namespace Northwind.Api.Controllers
 
 			return Ok(employeeData);
 		}
-
 		[HttpDelete("DeleteEmployee")]
 		public async Task<IActionResult> Delete(int id)
 		{
@@ -55,7 +54,6 @@ namespace Northwind.Api.Controllers
 
 			return Ok(employeeData);
 		}
-
 		[HttpPut("PutEmployee")]
 		public async Task<IActionResult> Update(Employee employee)
 		{

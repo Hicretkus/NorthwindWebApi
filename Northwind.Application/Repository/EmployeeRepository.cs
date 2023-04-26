@@ -27,6 +27,7 @@ namespace Northwind.Application.Repository
 				return result;
 			}
 		}
+
 		public async Task<int> DeleteAsync(int id)
 		{
 			var sql = "DELETE FROM Employees WHERE Id = @id";
@@ -38,6 +39,7 @@ namespace Northwind.Application.Repository
 				return result;
 			}
 		}
+
 		public async Task<IReadOnlyList<Employee>> GetAllAsync()
 		{
 			var sql = "SELECT * FROM Employees";
@@ -49,6 +51,7 @@ namespace Northwind.Application.Repository
 				return result.ToList();
 			}
 		}
+
 		public async Task<Employee> GetByIdAsync(int id)
 		{
 			var sql = "SELECT * FROM Employees WHERE Id = @id";
@@ -60,6 +63,7 @@ namespace Northwind.Application.Repository
 				return result;
 			}
 		}
+
 		public async Task<int> UpdateAsync(Employee entity)
 		{
 			var sql = "UPDATE Employees SET LastName = @LastName, FirstName = @FirstName, Title = @Title,TitleOfCourtesy=@TitleOfCourtesy,BirthDate=@BirthDate,HireDate=@HireDate," +
