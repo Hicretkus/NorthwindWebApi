@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Northwind.Api.Helpers;
 using Northwind.Application.Repository;
 using Northwind.Infrastructure.Persistence;
 using System.Reflection;
@@ -10,7 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<ConnectionHelper>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddTransient<ProductRepository>();
 builder.Services.AddTransient<CustomerRepository>();

@@ -55,7 +55,7 @@ namespace Northwind.Api.Controllers
 			return Ok(customerData);
 		}
 
-		[HttpPut("PutCustomer")]
+		[HttpPut("PutCustomer")]		
 		public async Task<IActionResult> Update(Customer customer)
 		{
 			var data = await _customerRepository.UpdateAsync(customer);
