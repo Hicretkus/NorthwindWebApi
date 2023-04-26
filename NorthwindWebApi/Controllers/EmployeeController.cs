@@ -25,8 +25,8 @@ namespace Northwind.Api.Controllers
 			var employeeData = _mapper.Map<List<EmployeeDto>>(data);
 
 			return Ok(employeeData);
-
 		}
+
 		[HttpGet("{id}")]
 		public async Task<IActionResult> GetById(int id)
 		{
@@ -35,9 +35,8 @@ namespace Northwind.Api.Controllers
 			if (employeeData == null) return Ok();
 
 			return Ok(employeeData);
-
-
 		}
+
 		[HttpPost("PostEmployee")]
 		public async Task<IActionResult> Add(Employee employee)
 		{
@@ -46,6 +45,7 @@ namespace Northwind.Api.Controllers
 
 			return Ok(employeeData);
 		}
+
 		[HttpDelete("DeleteEmployee")]
 		public async Task<IActionResult> Delete(int id)
 		{
@@ -54,6 +54,7 @@ namespace Northwind.Api.Controllers
 
 			return Ok(employeeData);
 		}
+
 		[HttpPut("PutEmployee")]
 		public async Task<IActionResult> Update(Employee employee)
 		{

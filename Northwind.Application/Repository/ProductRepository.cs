@@ -3,7 +3,6 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Northwind.Domain.Entities;
 
-
 namespace Northwind.Application.Repository
 {
     public class ProductRepository : IGenericRepository<Product>

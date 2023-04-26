@@ -1,5 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Northwind.Domain.Entities;
 
@@ -12,7 +11,7 @@ namespace Northwind.Infrastructure.Persistence
 		public NorthwindDbContext(DbContextOptions<NorthwindDbContext> options) : base(options)
 
 		{
-			//options.UseSqlServer("data source=.;initial catalog=NorthwindDb;integrated security=true");
+			
 		}
 
 		public DbSet<Customer> Customers { get; set; }
