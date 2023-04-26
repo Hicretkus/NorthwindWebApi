@@ -31,7 +31,7 @@ namespace Northwind.Api.Controllers
 		public async Task<IActionResult> GetById(int id)
 		{
 			var data = await _productRepository.GetByIdAsync(id);
-			var productData = _mapper.Map<List<ProductDto>>(data);
+			var productData = _mapper.Map<ProductDto>(data);
             if (productData == null) return Ok();
 
 			return Ok(productData);

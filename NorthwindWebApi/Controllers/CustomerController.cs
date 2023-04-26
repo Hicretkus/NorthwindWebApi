@@ -32,7 +32,7 @@ namespace Northwind.Api.Controllers
 		public async Task<IActionResult> GetById(int id)
 		{
 			var data = await _customerRepository.GetByIdAsync(id);
-			var customerData = _mapper.Map<List<CustomerDto>>(data);
+			var customerData = _mapper.Map<CustomerDto>(data);
 			if (customerData == null) return Ok();
 
 			return Ok(customerData);

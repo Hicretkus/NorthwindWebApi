@@ -31,7 +31,7 @@ namespace Northwind.Api.Controllers
 		public async Task<IActionResult> GetById(int id)
 		{
 			var data = await _employeeRepository.GetByIdAsync(id);
-			var employeeData = _mapper.Map<List<EmployeeDto>>(data);
+			var employeeData = _mapper.Map<EmployeeDto>(data);
 			if (employeeData == null) return Ok();
 
 			return Ok(employeeData);
