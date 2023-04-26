@@ -26,7 +26,6 @@ namespace Northwind.Application.Repository
 
 			}
 		}
-
 		public async Task<int> DeleteAsync(int id)
 		{
 			var sql = "DELETE FROM Customers WHERE Id = @id";
@@ -38,7 +37,6 @@ namespace Northwind.Application.Repository
 				return result;
 			}
 		}
-
 		public async Task<IReadOnlyList<Customer>> GetAllAsync()
 		{
 			var sql = "SELECT * FROM Customers";
@@ -50,7 +48,6 @@ namespace Northwind.Application.Repository
 				return result.ToList();
 			}
 		}
-
 		public async Task<Customer> GetByIdAsync(int id)
 		{
 			var sql = "SELECT * FROM Customers WHERE Id = @id";
@@ -62,7 +59,6 @@ namespace Northwind.Application.Repository
 				return result;
 			}
 		}
-
 		public async Task<int> UpdateAsync(Customer entity)
 		{
 			var sql = "UPDATE Customers SET  Name = @Name, Contact = @Contact, ContactTitle = @ContactTitle,Address=@Address,City=@City,Region=@Region,PostalCode=@PostalCode,Country=@Country,Phone=@Phone,Fax=@Fax WHERE Id = @id";

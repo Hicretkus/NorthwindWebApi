@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Application.Dtos;
 using Northwind.Application.Repository;
@@ -7,10 +6,10 @@ using Northwind.Domain.Entities;
 
 namespace Northwind.Api.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class CustomerController : ControllerBase
-	{
+	    [Route("api/[controller]")]
+	    [ApiController]
+	    public class CustomerController : ControllerBase
+	    {
 		private readonly IMapper _mapper;
 		private readonly CustomerRepository _customerRepository;
 		public CustomerController(IMapper mapper, CustomerRepository customerRepository)
@@ -26,8 +25,8 @@ namespace Northwind.Api.Controllers
 			var customerData = _mapper.Map<List<CustomerDto>>(data);
 
 			return Ok(customerData);
-
 		}
+
 		[HttpGet("{id}")]
 		public async Task<IActionResult> GetById(int id)
 		{
@@ -36,9 +35,8 @@ namespace Northwind.Api.Controllers
 			if (customerData == null) return Ok();
 
 			return Ok(customerData);
-
-
 		}
+
 		[HttpPost("PostCustomer")]
 		public async Task<IActionResult> Add(Customer customer)
 		{
@@ -46,8 +44,8 @@ namespace Northwind.Api.Controllers
 			var customerData = _mapper.Map<List<CustomerDto>>(data);
 
 			return Ok(customerData);
-
 		}
+
 		[HttpDelete("DeleteCustomer")]
 		public async Task<IActionResult> Delete(int id)
 		{
@@ -56,6 +54,7 @@ namespace Northwind.Api.Controllers
 
 			return Ok(customerData);
 		}
+
 		[HttpPut("PutCustomer")]
 		public async Task<IActionResult> Update(Customer customer)
 		{
